@@ -9,6 +9,10 @@
 Local $SETTING_FILE_NAME = "settings.au3"
 Local $SETTING_WRITE_FILE_NAME = "settings_new.au3"
 
+Global $controlArrays
+
+HotKeySet("!s", "SaveSettings")
+
 Func ReadSettings()
    Local $array[1] = ["#include-once"]
    
@@ -60,7 +64,27 @@ EndFunc
 ;Debug(ReadSettings())
 ShowSettings()
 
-Local $controlArrays
+Func SaveSettings()
+   Local $writeFileName = @ScriptDir & "\" & $SETTING_WRITE_FILE_NAME
+   FileDelete($writeFileName)
+   FileWriteLine($writeFileName, "#include-once")
+   For $i = 0 To UBound($controlArrays) - 1 Step 1
+	  Local $ctrlLabel = $controlArrays[$i][0]
+	  Local $ctrlEdit = $controlArrays[$i][1]
+	  
+	  Local $key = GUICtrlRead($ctrlLabel)
+	  Local $value = GUICtrlRead($ctrlEdit)
+	  Local $splits = StringSplit($value, ",")
+	  Local $writeLine = "Global $" & GUICtrlRead($ctrlLabel)
+	  If $splits[0] > 1 Then
+		 $writeLine &= "[" & $splits[0] & "] = [" & $value & "]"
+	  Else
+		 $writeLine &= " = " & $value
+	  EndIf
+	  ln($writeLine)
+ 	  FileWriteLine($writeFileName, $writeLine)
+   Next
+EndFunc
 
 Func ShowSettings()
    Local $frameWidth = 480
@@ -99,26 +123,9 @@ Func ShowSettings()
 	  $i += 1
    Next
 
-   Local $writeFileName = @ScriptDir & "\" & $SETTING_WRITE_FILE_NAME
-   FileDelete($writeFileName)
-   FileWriteLine($writeFileName, "#include-once")
-   For $i = 0 To UBound($controlArrays) - 1 Step 1
-	  Local $ctrlLabel = $controlArrays[$i][0]
-	  Local $ctrlEdit = $controlArrays[$i][1]
-	  
-	  Local $key = GUICtrlRead($ctrlLabel)
-	  Local $value = GUICtrlRead($ctrlEdit)
-	  Local $splits = StringSplit($value, ",")
-	  Local $writeLine = "Global $" & GUICtrlRead($ctrlLabel)
-	  If $splits[0] > 1 Then
-		 $writeLine &= "[" & $splits[0] & "] = [" & $value & "]"
-	  Else
-		 $writeLine &= " = " & $value
-	  EndIf
-;~ 	  ln($writeLine)
- 	  FileWriteLine($writeFileName, $writeLine)
-   Next
-
+   GUISetState(@SW_SHOW)
+   
+   GUICreate("Settings2", $frameWidth, $frameHeight)
    GUISetState(@SW_SHOW)
 EndFunc
 
