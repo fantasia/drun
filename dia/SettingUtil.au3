@@ -4,8 +4,10 @@
 #include <WindowsConstants.au3>
 #include <StaticConstants.au3>
 #include <Array.au3>
+#include <d3util.au3>
 
 Local $SETTING_FILE_NAME = "settings.au3"
+Local $SETTING_WRITE_FILE_NAME = "settings_new.au3"
 
 Func ReadSettings()
    Local $array[1] = ["#include-once"]
@@ -58,18 +60,25 @@ EndFunc
 ;Debug(ReadSettings())
 ShowSettings()
 
+Local $controlArrays
+
 Func ShowSettings()
-   Local $frameWidth = 200
+   Local $frameWidth = 480
    Local $frameHeight = 6
    
    Local $ctrlPosX = 10
    Local $ctrlPosY = 6
    Local $ctrlPosYGap = 30
+   Local $labelWidth = 140
+   Local $editWidth = 220
    Local $ctrlWidth = $frameWidth - $ctrlPosX * 2
+   Local $ctrlHeight = 22
 
    Local $settings = ReadSettings()
    
    $frameHeight += $ctrlPosYGap * UBound($settings)
+   Local $controls[UBound($settings)][2]
+   $controlArrays = $controls
    
    ; Create Frame
    GUICreate("Settings", $frameWidth, $frameHeight)
@@ -79,16 +88,36 @@ Func ShowSettings()
    GUICtrlSetBkColor($btnSave, 0xFF6666)
    $ctrlPosY += $ctrlPosYGap
 
+   Local $i = 0
    For $el In $settings
-	  GUICtrlCreateButton($el[1], $ctrlPosX, $ctrlPosY, $ctrlWidth)
+	  Local $ctrlX = $ctrlPosX
+	  $controlArrays[$i][0] = GUICtrlCreateLabel($el[1], $ctrlX, $ctrlPosY, $labelWidth, $ctrlHeight)
+	  $ctrlX += $labelWidth
+ 	  $controlArrays[$i][1] = GUICtrlCreateEdit($el[2], $ctrlX, $ctrlPosY, $editWidth, $ctrlHeight, 0, $WS_EX_STATICEDGE)
+;~ 	  GUICtrlCreateButton($el[1], $ctrlPosX, $ctrlPosY, $ctrlWidth)
 	  $ctrlPosY += $ctrlPosYGap
+	  $i += 1
    Next
 
-   GUICtrlCreateLabel("alt + w" , 200, 10)
-   Local $editWaitScreen = GUICtrlCreateEdit("" , 200, 26, 190, 20, $ES_READONLY, $WS_EX_STATICEDGE)
-   Local $editMousePos = GUICtrlCreateEdit("" , 200, 56, 100, 20, $ES_READONLY, $WS_EX_STATICEDGE)
-   Local $editMouseColor = GUICtrlCreateEdit("" , 310, 56, 80, 20, $ES_READONLY, $WS_EX_STATICEDGE)
-   Local $editActiveWindow = GUICtrlCreateEdit("" , 200, 86, 190, 20, $ES_READONLY, $WS_EX_STATICEDGE)
+   Local $writeFileName = @ScriptDir & "\" & $SETTING_WRITE_FILE_NAME
+   FileDelete($writeFileName)
+   FileWriteLine($writeFileName, "#include-once")
+   For $i = 0 To UBound($controlArrays) - 1 Step 1
+	  Local $ctrlLabel = $controlArrays[$i][0]
+	  Local $ctrlEdit = $controlArrays[$i][1]
+	  
+	  Local $key = GUICtrlRead($ctrlLabel)
+	  Local $value = GUICtrlRead($ctrlEdit)
+	  Local $splits = StringSplit($value, ",")
+	  Local $writeLine = "Global $" & GUICtrlRead($ctrlLabel)
+	  If $splits[0] > 1 Then
+		 $writeLine &= "[" & $splits[0] & "] = [" & $value & "]"
+	  Else
+		 $writeLine &= " = " & $value
+	  EndIf
+;~ 	  ln($writeLine)
+ 	  FileWriteLine($writeFileName, $writeLine)
+   Next
 
    GUISetState(@SW_SHOW)
 EndFunc
