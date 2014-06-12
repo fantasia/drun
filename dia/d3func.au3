@@ -1,6 +1,7 @@
 #include-once
 #include <d3util.au3>
-#include <d3setting.au3>
+;~ #include <d3setting.au3>
+#include <d3setting_home.au3>
 
 Func CheckScreen($screen, $bounds = 2)
    Local $pos = PixelSearch($screen[0], $screen[1], $screen[2], $screen[3], $screen[4], $bounds)
@@ -112,6 +113,48 @@ Func BattleBudu()
 		 EndIf
 	  Next
 	  MouseUp("right")
+
+   WEnd
+EndFunc
+
+Func BattleDevilHunter()
+   l("battle ")
+   MouseMove(278, 518, 10)
+   MouseClick("left")
+   Sleep(45000)
+
+   MouseMove(672, 283, 10)
+   MouseClick("right")
+   Sleep(500)
+
+   Local $battleLoop = 0
+   While True
+	  MouseMove(672, 283, 10)
+	  $battleLoop += 1
+	  ConsoleWrite($battleLoop & " " )
+
+	  Send("1")
+	  Sleep(500)
+	  Send("3")
+	  Sleep(500)
+	  Send("4")
+	  Sleep(500)
+
+	  Send("{LSHIFT down}")
+	  MouseDown("left")
+   
+	  For $i = 1 To 8 Step 1
+		 Send("2")
+		 Sleep(1000)
+		 If killedGhom() Then
+			MouseUp("left")
+			Send("{LSHIFT up}")
+			ConsoleWrite("end " & @CRLF )
+			Return
+		 EndIf
+	  Next
+	  MouseUp("left")
+	  Send("{LSHIFT up}")
 
    WEnd
 EndFunc

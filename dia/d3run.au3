@@ -119,9 +119,10 @@ Func FullCycle()
    GotoMap2()
    GotoGhom()
 
-   BattleWizard()
+;~    BattleWizard()
    Sleep(4000)
-   ;BattleBudu()
+   BattleDevilHunter()
+;~    BattleBudu()
 
    ToggleItems()
 
