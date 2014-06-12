@@ -121,7 +121,7 @@ Func BattleDevilHunter()
    l("battle ")
    MouseMove(278, 518, 10)
    MouseClick("left")
-   Sleep(45000)
+   Sleep(4500)
 
    MouseMove(672, 283, 10)
    MouseClick("right")
