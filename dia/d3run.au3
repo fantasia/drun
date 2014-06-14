@@ -123,8 +123,11 @@ Func FullCycle()
    Sleep(4000)
    BattleDevilHunter()
 ;~    BattleBudu()
+   Sleep(3000)
 
+;~    Send("{PRINTSCREEN}")
    ToggleItems()
+;~    Send("{PRINTSCREEN}")
 
 ;~    MouseClick("left")
 ;~    Sleep(200)
