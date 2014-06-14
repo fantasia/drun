@@ -2,6 +2,10 @@
 #include <WindowsConstants.au3>
 #include <WinAPI.au3>
 
+Func DrawRect($val)
+   DrawRectRaw($val[0], $val[1], $val[2], $val[3], $val[4])
+EndFunc
+
 Func DrawRectRaw($x, $y, $w, $h, $c)
    Local $iWidth = 2
    Local $iColor = $c
@@ -21,15 +25,10 @@ Func DrawRectRaw($x, $y, $w, $h, $c)
    _WinAPI_ReleaseDC(0, $hDC)
 EndFunc
 
-Func DrawRect($val)
-   DrawRectRaw($val[0], $val[1], $val[2], $val[3], $val[4])
-EndFunc
-
 Func DrawTextOnMouseRight($text)
    Local $mousePos = MouseGetPos()
    DrawText($text, $mousePos[0], $mousePos[1])
 EndFunc
-
 
 Func DrawText($text, $x, $y, $w = 500, $h = 50, $fgColor = 0xFFFFFF, $bgColor = 0x000000)
    Local $hDC = _WinAPI_GetDC(0)
@@ -38,7 +37,7 @@ Func DrawText($text, $x, $y, $w = 500, $h = 50, $fgColor = 0xFFFFFF, $bgColor = 
    DllStructSetData($rect, "Top", $y)
    DllStructSetData($rect, "Right", $x + $w)
    DllStructSetData($rect, "Bottom", $y + $h)
-   Local $hFont = _WinAPI_CreateFont(50, 0)
+   Local $hFont = _WinAPI_CreateFont(20, 0, 0, 0, 500)
    Local $hOldFont = _WinAPI_SelectObject($hDC, $hFont)
    _WinAPI_SetTextColor($hDC, $fgColor)
    _WinAPI_SetBkColor($hDC, $bgColor)
@@ -49,8 +48,4 @@ Func DrawText($text, $x, $y, $w = 500, $h = 50, $fgColor = 0xFFFFFF, $bgColor = 
    _WinAPI_DeleteObject($hFont)
    _WinAPI_ReleaseDC(0, $hDC)
 EndFunc
-
-DrawRectRaw(10, 10, 50, 340, 0xff)
-DrawTextOnMouseRight("alsdjflaskjdfkla")
-
 
