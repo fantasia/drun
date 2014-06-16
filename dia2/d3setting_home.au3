@@ -30,7 +30,7 @@ Global $map2[6] = [23, 95, 28, 100, 0xCB3111, 5]
 Global $moveGhom[2] = [1144, 94]
 Global $ghom[6] = [634, 72, 644, 82, 0xD04345, 10]
 Global $questComplete[6] = [614, 643, 624, 653, 0x451008, 10]
-Global $endBase[6] = [1205, 182, 1215, 192, 0x6EDFFF, 10]
+Global $endBase[6] = [1085, 128, 1095, 138, 0x96E6EC, 10]
 
 Global $inven[5] = [1055, 85, 1057, 87, 0xDCD963]
 Global $invenStartPos[2] = [870, 441];[923, 441]

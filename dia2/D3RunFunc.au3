@@ -39,6 +39,10 @@ EndFunc
 Func CheckGhom()
    return CheckScreen($ghom)
 EndFunc
+
+Func CheckEndBase()
+   Return CheckScreen($endBase)
+EndFunc
    
 Func End()
    CallbackClear()
@@ -111,7 +115,6 @@ Func MoveMap2()
 	  MouseClick("left", $moveMap2Backup[0], $moveMap2Backup[1])
 	  Sleep(4000)
    EndIf
-   MouseClick("left", $wayPointBtn[0], $wayPointBtn[1])
    CallbackAdd("CheckMap2", "GotoGhom")
 EndFunc
 
@@ -121,5 +124,60 @@ Func GotoGhom()
 	  MouseClick("left", $moveGhom[0], $moveGhom[1])
 	  Sleep(2000)
    Next
-   CallbackAdd("CheckGhom", "BattleStart")
+   CallbackAdd("CheckGhom", "Battle")
+EndFunc
+
+Func Battle()
+   CallbackClear()
+   Call($battleFunc)
+   MouseMove(638, 614)
+   Send("{ESC}")
+   Send("{PRINTSCREEN}")
+   ToggleItems()
+EndFunc
+
+Func ToggleItems()
+   ln("toggle item")
+   ToggleItem($itemLegend, 3)
+   ToggleItem($itemSet, 30)
+;~    ToggleItem($itemYellow, 10, False)
+;~    ToggleItem($itemBlue, 10, False)
+   ln("return base")
+   Send("t")
+   CallbackAdd("CheckEndBase", "DestroyItems")
+EndFunc
+
+Func DestroyItems()
+   CallbackClear()
+   Sleep(3000)
+   Send("{ESC}")
+   Sleep(1000)
+   ExitMainScreen()
+EndFunc
+
+
+Func ToggleItem($item, $bound = 1, $sendScreenCapture = True)
+   Send("{ALT}")
+   Sleep(500)
+   Local $itemCount = 0
+   For $i = 1 To $item[1] Step 1
+	  Local $pos = PixelSearch(400, 200, 900, 500, $item[0], $bound)
+	  If Not @error Then
+		 $itemCount += 1
+		 MouseMove($pos[0], $pos[1])
+		 MouseClick("left")
+		 If $sendScreenCapture Then
+			Sleep(1800)
+		 Else
+			Sleep(1000)
+		 EndIf
+		 Send("{ALT}")
+		 If $sendScreenCapture Then
+			;SendScreenCapture("[TITLE:item]", 260, 810, 330, 810)
+		 EndIf
+	  Else
+		 ExitLoop
+	  EndIf
+   Next
+   return $itemCount
 EndFunc

@@ -3,10 +3,12 @@
 #include <ScreenUtil.au3>
 #include <DebugUtil.au3>
 #include <D3RunFunc.au3>
+#include <D3RunBattle.au3>
 
 ShowMainControlPannel()
 
 Global $callback[1] = ["Dummy"]
+Global $battleFunc = "BattleDevilHunter"
 
 Func CallbackClear()
    While UBound($callback) > 1
@@ -34,6 +36,7 @@ Func Test2()
 EndFunc
 
 Local $iMsg = 0
+Local $lastCheckedSec = 0
 While 1
    $iMsg = GUIGetMsg()
    Switch $iMsg
@@ -41,14 +44,17 @@ While 1
 		 ExitLoop
    EndSwitch
 
-    For $i = 1 To UBound($callback) - 1 Step 1
-	  Local $func = $callback[$i]
-	  ln("Main Call : " & $func[0])
-	  If Call($func[0]) Then
-		 ln("Main Call : " & $func[0] & " => " & $func[1])
-		 Call($func[1])
-	  EndIf
-    Next
+   If $lastCheckedSec <> @SEC Then
+	  $lastCheckedSec = @SEC
+	  For $i = 1 To UBound($callback) - 1 Step 1
+		 Local $func = $callback[$i]
+		 ln("Main Call : " & $func[0])
+		 If Call($func[0]) Then
+			ln("Main Call : " & $func[0] & " => " & $func[1])
+			Call($func[1])
+		 EndIf
+	  Next
+   EndIf
 
    If $iMsg > 0 Then
 	  InitPosition()
