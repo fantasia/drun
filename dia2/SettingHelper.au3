@@ -2,11 +2,6 @@
 #include <EditConstants.au3>
 #include <WindowsConstants.au3>
 #include <StaticConstants.au3>
-#include <Array.au3>
-#include <Misc.au3>
-#include <d3func.au3>
-#include <d3run.au3>
-#include <d3util.au3>
 
 Func ShowSettingHelper()
    Local $frameWidth = 220
@@ -19,8 +14,9 @@ Func ShowSettingHelper()
    ; Create Frame
    GUICreate("SettingHelper", $frameWidth, $frameHeight)
    ; Crate ExitButton
-   Local $btnExitRun = GUICtrlCreateButton("Quit", $btnPosX, $btnPosY, $btnWidth)
-   GUICtrlSetBkColor($btnExitRun, 0xFF6666)
+   Global $editPixelSearchGaps = GUICtrlCreateEdit("3" , 10, 6, 24, 20, 0, $WS_EX_STATICEDGE)
+   Global $editPixelSearchBounds = GUICtrlCreateEdit("5" , 50, 6, 30, 20, 0, $WS_EX_STATICEDGE)
+   Global $editTargetWindow = GUICtrlCreateEdit("[ACTIVE]" , 90, 6, 110, 20, 0, $WS_EX_STATICEDGE)
    $btnPosY += $btnPosYGap
 
    GUICtrlCreateLabel("alt + w" , 10, 36)
@@ -33,6 +29,11 @@ EndFunc
 
 ShowSettingHelper()
 HotKeySet("!w", "WindowPos")
+HotKeySet("!q", "Quit")
+
+Func Quit()
+   Exit(0)
+EndFunc
 
 Func WindowPos()
    Local $p = MouseGetPos()
@@ -59,9 +60,7 @@ While 1
    EndSwitch
 
    If $iMsg > 0 Then
-	  InitPosition()
 	  Local $controlText = GUICtrlRead($iMsg)
-	  ln($controlText & "() ret=" & Call($controlText))
    EndIf
 WEnd
 
