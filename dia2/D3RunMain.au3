@@ -14,7 +14,7 @@ Func CallbackClear()
    While UBound($callback) > 1
 	  _ArrayDelete($callback, 1)
    WEnd
-   ln("CallbackClear() " & UBound($callback))
+;~    ln("CallbackClear() " & UBound($callback))
 EndFunc
 
 Func CallbackAdd($condition, $action)
@@ -48,9 +48,9 @@ While 1
 	  $lastCheckedSec = @SEC
 	  For $i = 1 To UBound($callback) - 1 Step 1
 		 Local $func = $callback[$i]
-		 ln("Main Call : " & $func[0])
+;~ 		 ln("Main Call : " & $func[0])
 		 If Call($func[0]) Then
-			ln("Main Call : " & $func[0] & " => " & $func[1])
+;~ 			ln("Main Call : " & $func[0] & " => " & $func[1])
 			Call($func[1])
 		 EndIf
 	  Next
