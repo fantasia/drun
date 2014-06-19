@@ -29,7 +29,7 @@ EndFunc
 
 ShowSettingHelper()
 HotKeySet("!w", "WindowPos")
-HotKeySet("!q", "Quit")
+;~ HotKeySet("!q", "Quit")
 
 Func Quit()
    Exit(0)

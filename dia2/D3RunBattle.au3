@@ -30,7 +30,6 @@ Func BattleDevilHunter()
 	  MouseDown("left")
 
 	  For $i = 1 To 8 Step 1
-		 Send("2")
 		 Sleep(1000)
 		 If CheckScreen($questComplete) Then
 			MouseUp("left")
@@ -41,5 +40,8 @@ Func BattleDevilHunter()
 	  Next
 	  MouseUp("left")
 	  Send("{LSHIFT up}")
+
+	  Send("2")
+	  Sleep(500)
    WEnd
 EndFunc

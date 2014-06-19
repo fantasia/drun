@@ -44,6 +44,10 @@ Func CheckEndBase()
    Return CheckScreen($endBase)
 EndFunc
    
+Func CheckInven()
+   Return CheckScreen($inven)
+EndFunc
+   
 Func End()
    CallbackClear()
    ln("END!!!!!!!!!")
@@ -140,21 +144,68 @@ Func ToggleItems()
    ln("toggle item")
    ToggleItem($itemLegend, 3)
    ToggleItem($itemSet, 30)
-;~    ToggleItem($itemYellow, 10, False)
-;~    ToggleItem($itemBlue, 10, False)
+   ToggleItem($itemYellow, 10, False)
+   ToggleItem($itemBlue, 10, False)
    ln("return base")
    Send("t")
-   CallbackAdd("CheckEndBase", "DestroyItems")
+   CallbackAdd("CheckEndBase", "GotoDestroy")
+EndFunc
+
+Func GotoDestroy()
+   CallbackClear()
+   Send("{ESC}")
+   Sleep(1000)
+   MouseClick("left", $gotoDestroy[0], $gotoDestroy[1])
+   CallbackAdd("CheckInven", "DestroyItems")
 EndFunc
 
 Func DestroyItems()
    CallbackClear()
-   Sleep(3000)
-   Send("{ESC}")
+   Local $px = $invenStartPos[0]
+   Local $py = $invenStartPos[1]
+   For $y = 5 To 0 Step -1
+	  For $x = 9 To 0 Step -1
+		 If $x <= 0 And $y <=2 Then
+			ContinueLoop
+		 EndIf
+
+		 Local $posX = $px + ($x * $invenSize[0]) + ($invenSize[0] / 3)
+		 Local $posY = $py + ($y * $invenSize[1]) + ($invenSize[1] / 3)
+		 Local $gap = 5
+		 Local $yelloItem[6] = [$posX - $gap, $posY - $gap, $posX + $gap, $posY + $gap, $invenYellowItem, 50]
+		 Local $blueItem[6] = [$posX - $gap, $posY - $gap, $posX + $gap, $posY + $gap, $invenBlueItem, 50]
+		 If CheckScreen($yelloItem, False) Or CheckScreen($blueItem, False) Then
+;~ 			MouseMove($posX, $posY) ; debug
+;~ 			ContinueLoop ; debug
+
+			If Not CheckScreen($destroyOn) Then
+			   MouseClick("left", $destroyOn[2], $destroyOn[3])
+			   Sleep(300)
+			EndIf
+
+			MouseClick("left", $posX, $posY)
+			Sleep(200)
+			If CheckScreen($yelloItem, False) Or CheckScreen($blueItem, False) Then
+			   Sleep(200)
+			   If checkScreen($destroyCancel) Then
+				  MouseClick("left", $destroyCancel[0], $destroyCancel[1])
+				  Sleep(200)
+				  ExitLoop
+			   EndIf
+			Else
+			   ;ConsoleWrite("Item Destroyed : " & $x & ", " & $y & @CRLF)
+			EndIf
+
+			;ConsoleWrite("Item Exist : " & $x & ", " & $y & @CRLF)
+		 EndIf
+	  Next
+   Next
+
    Sleep(1000)
+   Send("{ESC}")
+   Sleep(3000)
    ExitMainScreen()
 EndFunc
-
 
 Func ToggleItem($item, $bound = 1, $sendScreenCapture = True)
    Send("{ALT}")
