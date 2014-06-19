@@ -201,7 +201,10 @@ Func DestroyItems()
 	  Next
    Next
 
-   Sleep(1000)
+   MouseClick("left", $repairTab[0], $repairTab[1])
+   Sleep(500)
+   MouseClick("left", $repairBtn[0], $repairBtn[1])
+   Sleep(500)
    Send("{ESC}")
    Sleep(3000)
    ExitMainScreen()
