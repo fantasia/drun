@@ -110,9 +110,9 @@ EndFunc
 
 Func MoveMap2()
    CallbackClear()
-   Sleep(2000)
+   Sleep(1000)
    MouseClick("left", $moveMap2[0], $moveMap2[1])
-   Sleep(4000)
+   Sleep(2000)
    If Not CheckMap2() Then
 	  MouseClick("left", $moveMap2Backup[0], $moveMap2Backup[1])
 	  Sleep(1000)
@@ -153,6 +153,7 @@ EndFunc
 
 Func GotoDestroy()
    CallbackClear()
+   Sleep(1000)
    Send("{ESC}")
    Sleep(1000)
    MouseClick("left", $gotoDestroy[0], $gotoDestroy[1])
