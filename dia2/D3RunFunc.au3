@@ -136,7 +136,7 @@ Func Battle()
    Call($battleFunc)
    MouseMove(638, 614)
    Send("{ESC}")
-   Send("{PRINTSCREEN}")
+;~    Send("{PRINTSCREEN}")
    ToggleItems()
 EndFunc
 
