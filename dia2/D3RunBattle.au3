@@ -20,28 +20,32 @@ Func BattleDevilHunter()
 	  ConsoleWrite($battleLoop & " " )
 
 	  Send("1")
-	  Sleep(500)
+	  Sleep(200)
 	  Send("3")
-	  Sleep(500)
+	  Sleep(200)
 	  Send("4")
-	  Sleep(500)
+	  Sleep(200)
+	  MouseClick("right")
+	  Sleep(200)
 
-	  Send("{LSHIFT down}")
-	  MouseDown("left")
+;~ 	  Send("{LSHIFT down}")
+;~ 	  MouseDown("left")
 
-	  For $i = 1 To 8 Step 1
+	  For $i = 1 To 5 Step 1
 		 Sleep(1000)
 		 If CheckScreen($questComplete) Then
-			MouseUp("left")
-			Send("{LSHIFT up}")
+;~ 			MouseUp("left")
+;~ 			Send("{LSHIFT up}")
 			ConsoleWrite("end " & @CRLF )
 			Return
 		 EndIf
 	  Next
-	  MouseUp("left")
-	  Send("{LSHIFT up}")
+;~ 	  MouseUp("left")
+;~ 	  Send("{LSHIFT up}")
 
+	  MouseClick("right")
+	  Sleep(200)
 	  Send("2")
-	  Sleep(500)
+	  Sleep(200)
    WEnd
 EndFunc
