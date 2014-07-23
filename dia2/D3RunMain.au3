@@ -9,6 +9,7 @@ ShowMainControlPannel()
 
 Global $callback[1] = ["Dummy"]
 Global $battleFunc = "BattleDevilHunter"
+;~ Global $battleFunc = "BattleBudu"
 
 Func CallbackClear()
    While UBound($callback) > 1
