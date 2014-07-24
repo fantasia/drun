@@ -1,6 +1,6 @@
 #include-once
 #include <DebugUtil.au3>
-#include <d3setting_home.au3>
+#include <d3setting_home2.au3>
 
 
 Func InitPosition()
@@ -78,6 +78,10 @@ Func SelectGhomQuest()
    MouseClick("left", $selectGhomBtn1[0], $selectGhomBtn1[1])
    Sleep($selectGhomBtnClickInterval)
    MouseClick("left", $selectGhomBtn2[0], $selectGhomBtn2[1])
+   Sleep($selectGhomBtnClickInterval)
+   MouseClick("left", $selectGhomBtn2_1[0], $selectGhomBtn2_1[1])
+   Sleep($selectGhomBtnClickInterval)
+   MouseClick("left", $selectGhomBtn2_1[0], $selectGhomBtn2_1[1])
    Sleep($selectGhomBtnClickInterval)
    MouseClick("left", $selectGhomBtn3[0], $selectGhomBtn3[1])
    Sleep($selectGhomBtnClickInterval)
