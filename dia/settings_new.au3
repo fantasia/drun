@@ -1,0 +1,16 @@
+#include-once
+Global $screenSize[2] = [1280, 760]
+Global $mainScreen[5] = [113, 372, 115, 374, 0x420C00]
+Global $exitMainScreen[5] = [1123, 679, 1125, 681, 0x3272A0]
+Global $gameSettingScreen[5] = [600, 210, 670, 290, 0xAC2AAC]
+Global $startBase[5] = [1221, 173, 1223, 175, 0xE40400]
+Global $questMap[5] = [639, 119, 641, 121, 0xFF7E00]
+Global $map1[5] = [1171, 401, 1173, 403, 0xBB5D32]
+Global $map2[5] = [27, 100, 29, 102, 0xC6240A]
+Global $ghom[5] = [5637, 81, 639, 83, 0x8E0000]
+Global $questComplete[5] = [618, 643, 620, 645, 0x451208]
+Global $endBase[5] = [350, 442, 352, 444, 0x3F56B9]
+Global $exitMenuScreen[5] = [798, 46, 800, 48, 0xB00639]
+Global $inven[5] = [1055, 85, 1057, 87, 0xDCD963]
+Global $invenStartPos[2] = [870, 441]
+Global $invenSize  =  35

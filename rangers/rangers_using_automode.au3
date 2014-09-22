@@ -82,32 +82,14 @@ EndFunc
 
 Local $feather[5] = [186, 39, 188, 41, 0xF4E28E]
 Local $stageBtn[2] = [200, 143]
+;Local $stageBtn[2] = [106, 143] ; stage 104
 Local $selectItem[5] = [237, 230, 239, 232, 0x0ABCCB]
 Local $nextBtn[2] = [238, 231]
 Local $selectFriend[5] = [238, 229, 240, 231, 0x05C232]
 Local $startBtn[2] = [239, 230]
+Local $playGame[5] = [43, 137, 45, 139, 0xFFD93B]
+Local $autoBtn[5] = [381, 77, 383, 79, 0xB7BABD]
 Local $playGame[5] = [50, 152, 52, 154, 0xFFD93B]
-
-Local $stageMap[5] = [91, 57, 93, 59, 0xF8E03E] ; back button
-Local $mainScreen[5] = [92, 319, 94, 321, 0x8E4630]
-Local $myTeam[5] = [72, 240, 74, 242, 0xC8A270]
-Local $latestBtn[2] = [624, 251]
-Local $lastRanger[5] = [110, 286, 112, 288, 0xA45E38]
-Local $sellBtn[5] = [423, 290, 425, 292, 0x0EBA2A]
-Local $sellOk[5] = [329, 273, 331, 275, 0x0CB636]
-Local $mainStartBtn[2] = [603, 322]
-
-Local $mineralActive[5] = [335, 217, 337, 219, 0x65EDF9]
-Local $missleActive[5] = [73, 206, 75, 208, 0xB1B1B1]
-
-;yellow 0xFAF036
-;brown 0x672E14
-Local $c1[5] = [101, 210, 103, 212, 0xFAF036]
-Local $c2[5] = [144, 210, 146, 212, 0xDECF01]
-Local $c3[5] = [185, 210, 187, 212, 0xFAF036]
-Local $c4[5] = [228, 210, 230, 212, 0xFAF036]
-Local $c5[5] = [270, 210, 272, 212, 0xFAF036]
-
 Local $endGame[5] = [138, 230, 140, 232, 0xB00400]
 Local $roulette[5] = [178, 219, 180, 221, 0x05C232]
 Local $rouletteOk[5] = [221, 219, 223, 221, 0x05C232]
@@ -126,26 +108,12 @@ Func runRangers()
    click($startBtn)
    ConsoleWrite("wait : playGame" & @CRLF)
    waitScreen($playGame)
-
-   ConsoleWrite("click MineralActive" & @CRLF)
-   For $i = 1 To 27 Step 1
-	  click($mineralActive)
-	  Sleep(400)
-   Next
+   
+   Sleep(1000)
+   click($autoBtn)
 
    While True
-	  checkAndClick($c1)
-	  Sleep(20)
-	  checkAndClick($c2)
-	  Sleep(20)
-	  checkAndClick($c3)
-	  Sleep(20)
-	  checkAndClick($c4)
-	  Sleep(20)
-;	  checkAndClick($c5)
-;	  Sleep(20)
-	  checkAndClick($missleActive)
-	  Sleep(20)
+	  Sleep(10000)
 	  If checkPixel($endGame) Then
 		 ExitLoop
 	  EndIf
@@ -163,41 +131,6 @@ Func runRangers()
    click($rouletteOk)
    Sleep(2000)
    click($rouletteOk)
-
-
-;~    ConsoleWrite("wait : $stageMap" & @CRLF)
-;~    waitScreen($stageMap)
-;~    click($stageMap)
-;~    ConsoleWrite("wait : $mainScreen" & @CRLF)
-;~    waitScreen($mainScreen)
-;~    click($mainScreen)
-;~    ConsoleWrite("wait : $myTeam" & @CRLF)
-;~    waitScreen($myTeam)
-;~    click($latestBtn)
-;~    Sleep(1000)
-
-;~    If checkPixel($lastRanger) Then
-;~ 	  ConsoleWrite("sell ranger" & @CRLF)
-;~ 	  click($lastRanger)
-;~ 	  ConsoleWrite("wait : $sellBtn" & @CRLF)
-;~ 	  waitScreen($sellBtn)
-;~ 	  click($sellBtn)
-;~ 	  ConsoleWrite("wait : $sellBtn" & @CRLF)
-;~ 	  waitScreen($sellBtn)
-;~ 	  click($sellBtn)
-;~ 	  ConsoleWrite("wait : $sellOk" & @CRLF)
-;~ 	  waitScreen($sellOk)
-;~ 	  click($sellOk)
-;~    EndIf
-
-;~    ConsoleWrite("wait : $stageMap" & @CRLF)
-;~    waitScreen($stageMap)
-;~    click($stageMap)
-;~    ConsoleWrite("wait : $mainScreen" & @CRLF)
-;~    waitScreen($mainScreen)
-;~    click($mainStartBtn)
-;~    Sleep(5000)
-
 EndFunc
 
 Local $p = WinGetPos($title)
