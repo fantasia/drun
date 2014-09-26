@@ -1,0 +1,25 @@
+{
+	"manifest_version": 2,
+	"name": "ImageDownloader",
+	"version": "0.0.1",
+
+	"icons": {
+		"128": "icon128.png"
+	},
+	
+	"description": "Image To File Downloader",
+	"browser_action": {
+		"default_icon": "icon128.png",
+		"default_title": "ImageDownloader",
+		"default_popup": "ImageDownPopup.html"
+	},
+
+	"content_scripts": [
+		{
+			"matches": ["http://*/*"],
+			"js": ["zepto.min.js", "content.js"]
+		}
+	],
+	
+	"permissions": ["background", "browsingData", "downloads", "fileBrowserHandler"]
+}
