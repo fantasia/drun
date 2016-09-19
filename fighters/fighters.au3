@@ -83,7 +83,7 @@ Local $start2[5] = [556, 345, 558, 347, 0x033F68]
 Local $energyCheck1[5] = [34, 247, 36, 249, 0x06060C]
 Local $energyCheck2[5] = [299, 252, 301, 254, 0x4D5969]
 
-Local $autoDisable[5] = [35, 356, 37, 358, 0x116CC1]
+Local $autoDisable[5] = [31, 348, 41, 358, 0x147BDC]
 Local $endGame[5] = [253, 348, 255, 350, 0x168D06]
 Local $restart[5] = [600, 360, 602, 362, 0x024DA6]
 Local $restartConfirm[5] = [347, 247, 349, 249, 0x014FA9]
@@ -122,7 +122,7 @@ Func runFighters()
    WEnd
 
    ConsoleWrite("wait $autoDisable" & @CRLF)
-   waitScreen($autoDisable)
+   waitScreen($autoDisable, 20)
    Sleep(300)
    click($autoDisable)
 

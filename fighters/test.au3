@@ -1,7 +1,7 @@
 #include <ImageSearch.au3> 
 HotKeySet("!q", "Quit")
-;~ HotKeySet("!w", "MousePos")
-HotKeySet("!w", "ImageSearch")
+HotKeySet("!w", "MousePos")
+;~ HotKeySet("!w", "ImageSearch")
 HotKeySet("^r", "Test")
 
 Func Test()
@@ -22,7 +22,7 @@ Func ImageSearch()
    If $search = 1 Then
 	  ConsoleWrite( "found!!" & @CRLF);
 	  MouseMove($x, $y, 10)
-   ElseIf
+   Else
 	  ConsoleWrite( "not found!!" & @CRLF);
    EndIf
 EndFunc
