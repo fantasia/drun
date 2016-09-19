@@ -1,11 +1,8 @@
-#NoTrayIon
-Local $title = "[TITLE:Phone screen]"
+#include-once
+#include <ImageSearch.au3> 
+#include <DebugUtil.au3> 
 
-HotKeySet("!q", "Quit")
-Func Quit()
-   Exit(0)
-EndFunc
-
+Local $title = "[TITLE:BlueStacks App Player]"
 
 Func getMousePos()
    Local $wp = WinGetPos($title)
@@ -90,7 +87,7 @@ Local $restartConfirm[5] = [347, 247, 349, 249, 0x014FA9]
 
 
 Func runFighters()
-   ConsoleWrite("wait start1" & @CRLF)
+   ln("wait start1" & @CRLF)
    waitScreen($checkStart1)
    Sleep(1000)
    click($start1)
