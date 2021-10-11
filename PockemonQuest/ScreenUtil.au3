@@ -7,6 +7,14 @@ Func LClick($param)
    MouseClick("left", $x, $y)
 EndFunc
 
+Func LDClick($param)
+   Local $w = WinGetPos("[ACTIVE]")
+   local $x = $w[0] + Round($w[2] * $param[0] / 100)
+   Local $y = $w[1] + Round($w[3] * $param[1] / 100)
+   MouseClick("left", $x, $y)
+   MouseClick("left", $x, $y)
+EndFunc
+
 Func CheckScreens($checkScreenParams)
    Local $length = UBound($checkScreenParams)
    Local $paramCount = Floor($length / 3)
