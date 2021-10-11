@@ -1,0 +1,42 @@
+#include-once
+Global $gameTitle = "SM-G991N"
+Global $screenSize[2] = [1280, 608]
+
+Global $checkQuestMain[3] = [4.22, 94.9, 0xF7C01A]
+Global $clickQuestMain[3] = [51.56, 50.16, 0x60704A]
+Global $checkQuestLevel[6] = [85.78, 87.66, 0xF25E6D, 85.7, 91.78, 0xF25E6D]
+Global $checkQuestResult[9] = [21.8, 23.36, 0xFCE55B, 48.36, 24.01, 0xFCE55B, 73.75, 24.51, 0xFCE55B]
+Global $clickQuestResult[3] = [96.48, 94.9, 0xFFFFFF]
+Global $checkQuestRun[6] = [5.55, 11.84, 0xF35D6C, 7.42, 11.68, 0xF15C6D]
+Global $checkQuestFail[6] = [47.66, 61.51, 0xF25E6D, 55.16, 61.51, 0xF25E6D]
+Global $clickQuestFail[3] = [51.33, 62.34, 0xF25E6D]
+Global $checkQuestFailCollect[6] = [27.5, 88.82, 0x53C5FA, 41.64, 89.14, 0x53C5FA]
+Global $clickQuestFailCollect[3] = [34.53, 88.16, 0x53C5FA]
+Global $checkQuestFailCollectYes[6] = [31.25, 62.01, 0x88FF51, 37.73, 62.01, 0x88FF51]
+Global $clickQuestFailCollectYes[3] = [34.77, 61.35, 0xB3F794]
+
+Global $checkCookMain[6] = [51.56, 50.16, 0x60704A, 4.22, 94.9, 0xF7C01A]
+Global $source1[3] = [51.17, 58.22, 0xEDCAA8]
+Global $source2[3] = [58.2, 58.72, 0x286CE1]
+Global $source3[3] = [65.08, 57.57, 0xF8BC3A]
+Global $source4[3] = [72.58, 57.57, 0x636363]
+Global $source5[3] = [78.67, 57.4, 0xD7DDFF]
+Global $source6[3] = [51.56, 74.01, 0xE42F31]
+Global $source7[3] = [57.81, 73.03, 0x38A5F8]
+Global $source8[3] = [64.22, 73.19, 0xFCE53A]
+Global $source9[3] = [71.95, 73.19, 0x4C4C4C]
+Global $btnStartCook[3] =
+
+Global $clickCookStart[3] = [30.13, 89.13, 0xF8C11C]
+Global $clickCookStartConfirm[3] = [33.59, 61.51, 0xFFFFFF]
+Global $checkCookStart[9] = [30.55, 62.66, 0x88FF51, 13.28, 11.84, 0x393930, 27.19, 92.6, 0x53410A]
+Global $checkCook[6] = [52.42, 19.9, 0x696969, 53.36, 21.38, 0x696969]
+Global $clickCook[3] = [51.95, 45.07, 0x7A8579]
+Global $checkCookConfirm[6] = [34.92, 63.32, 0x53C5FA, 65.08, 62.5, 0xF25E6D]
+Global $clickCookConfirm[3] = [34.3, 62.83, 0x53C5FA]
+Global $checkCookEnd[6] = [52.11, 18.09, 0xFFFFFF, 52.11, 20.89, 0xEE508C]
+Global $clickCookEnd[3] = [51.8, 42.43, 0x707B71]
+Global $checkCookEndConfirm[6] = [53.36, 48.03, 0x676054, 55.7, 87.83, 0xF8C11C]
+Global $clickCookEndConfirm[3] = [50.7, 87.83, 0xF8C11C]
+Global $checkPockemon[12] = [85.86, 90.46, 0xF25E6D, 11.41, 33.88, 0xFACF4C, 17.5, 53.45, 0x717166, 49.92, 90.79, 0xF3EBD7]
+

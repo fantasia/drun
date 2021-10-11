@@ -3,38 +3,24 @@
 #include <QuestLoop.au3>
 #include <ScreenUtil.au3>
 #include <DebugUtil.au3>
+;#include <Setting_SM-G991N.au3>
+#include <Setting_SM-T295N.au3>
 
 HotKeySet("!w", "WindowPos")
-HotKeySet("^1", "CheckCookConfirm")
+
 Func Test1()
    InitPosition()
-   LDClick($source6)
+   LDClick($source3)
    Sleep(500)
-   LDClick($source6)
+   LDClick($source3)
    Sleep(500)
-   LDClick($source7)
+   LDClick($source3)
    Sleep(500)
-   LDClick($source7)
+   LDClick($source4)
    Sleep(500)
    LDClick($source7)
    Sleep(500)
 EndFunc
-
-Global $gameTitle = "SM-G991N"
-Global $screenSize[2] = [1280, 608]
-
-Global $checkQuestMain[3] = [4.22, 94.9, 0xF7C01A]
-Global $clickQuestMain[3] = [51.56, 50.16, 0x60704A]
-Global $checkQuestLevel[6] = [85.78, 87.66, 0xF25E6D, 85.7, 91.78, 0xF25E6D]
-Global $checkQuestResult[9] = [21.8, 23.36, 0xFCE55B, 48.36, 24.01, 0xFCE55B, 73.75, 24.51, 0xFCE55B]
-Global $clickQuestResult[3] = [96.48, 94.9, 0xFFFFFF]
-Global $checkQuestRun[6] = [5.55, 11.84, 0xF35D6C, 7.42, 11.68, 0xF15C6D]
-Global $checkQuestFail[6] = [47.66, 61.51, 0xF25E6D, 55.16, 61.51, 0xF25E6D]
-Global $clickQuestFail[3] = [51.33, 62.34, 0xF25E6D]
-Global $checkQuestFailCollect[6] = [27.5, 88.82, 0x53C5FA, 41.64, 89.14, 0x53C5FA]
-Global $clickQuestFailCollect[3] = [34.53, 88.16, 0x53C5FA]
-Global $checkQuestFailCollectYes[6] = [31.25, 62.01, 0x88FF51, 37.73, 62.01, 0x88FF51]
-Global $clickQuestFailCollectYes[3] = [34.77, 61.35, 0xB3F794]
 
 ShowMainControlPannel()
 

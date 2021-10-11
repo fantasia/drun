@@ -18,9 +18,9 @@ Func StartQuestLoop()
 		 ContinueLoop
 	  EndIf
 
-	  If CheckQuestLevel() Then
-		 ContinueLoop
-	  EndIf
+;	  If CheckQuestLevel() Then
+;		 ContinueLoop
+;	  EndIf
 
 	  If CheckQuestFail() Then
 		 ContinueLoop
@@ -68,7 +68,7 @@ Func CheckQuestLevel()
    If CheckScreen($checkQuestLevel) Then
 	  ln("Screen Find ==> QuestLevel")
 	  UpdateStatus("QuestLevel. click stage")
-	  LClick($clickQuestMain)
+	  LClick($checkQuestLevel)
 	  Return True
    EndIf
    Return False
@@ -87,7 +87,7 @@ EndFunc
 Func CheckQuestFail()
    If CheckScreens($checkQuestFail) Then
 	  ln("Screen Find ==> QuestFail")
-	  LClick($clickQuestFail)
+	  LClick($checkQuestFail)
 	  UpdateStatus("QuestFail")
 	  Return True
    EndIf
@@ -97,7 +97,7 @@ EndFunc
 Func CheckQuestFailCollect()
    If CheckScreens($checkQuestFailCollect) Then
 	  ln("Screen Find ==> QuestFailCollect")
-	  LClick($clickQuestFailCollect)
+	  LClick($checkQuestFailCollect)
 	  UpdateStatus("QuestFail - Collect")
 	  Return True
    EndIf
@@ -107,7 +107,7 @@ EndFunc
 Func CheckQuestFailCollectYes()
    If CheckScreens($checkQuestFailCollectYes) Then
 	  ln("Screen Find ==> QuestFailCollectYes")
-	  LClick($clickQuestFailCollectYes)
+	  LClick($checkQuestFailCollectYes)
 	  UpdateStatus("QuestFail - CollectYes")
 	  Return True
    EndIf
@@ -117,13 +117,8 @@ EndFunc
 Func CheckQuestResult()
    If CheckScreens($checkQuestResult) Then
 	  ln("Screen Find ==> QuestResult")
-	  UpdateStatus("QuestResult 1/2. wait 2sec")
-	  Sleep(2000)
+	  UpdateStatus("QuestResult")
 	  LClick($clickQuestResult)
-	  UpdateStatus("QuestResult 2/2. wait 4sec")
-	  Sleep(4000)
-	  LClick($clickQuestResult)
-	  UpdateStatus("QuestResult done")
 	  Return True
    EndIf
    Return False
