@@ -15,6 +15,23 @@ Func LDClick($param)
    MouseClick("left", $x, $y)
 EndFunc
 
+Func CheckAndClick($taskName, $checkValues, $clickValues = False)
+   If CheckScreen($checkValues) Then
+	  ln("Screen Find ==> " & $taskName)
+	  UpdateStatus($taskName)
+
+	  If IsArray($clickValues) Then
+		 LClick($clickValues)
+	  Else
+		 LClick($checkValues)
+	  EndIf
+
+	  Return True
+   EndIf
+   Return False
+
+EndFunc
+
 Func CheckScreens($checkScreenParams)
    Local $length = UBound($checkScreenParams)
    Local $paramCount = Floor($length / 3)

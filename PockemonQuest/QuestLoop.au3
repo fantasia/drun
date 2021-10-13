@@ -5,121 +5,53 @@
 #include <StaticConstants.au3>
 #include <Array.au3>
 
-Func StartQuestLoop()
-   InitPosition()
-
-   Local $loopCount = 0
-   While 1
-	  $loopCount += 1
-	  Sleep(2000)
-	  ln("QuestLoopCount " & $loopCount)
-
-	  If CheckQuestMain() Then
-		 ContinueLoop
-	  EndIf
-
-;	  If CheckQuestLevel() Then
-;		 ContinueLoop
-;	  EndIf
-
-	  If CheckQuestFail() Then
-		 ContinueLoop
-	  EndIf
-
-	  If CheckQuestFailCollect() Then
-		 ContinueLoop
-	  EndIf
-
-	  If CheckQuestFailCollectYes() Then
-		 ContinueLoop
-	  EndIf
-
-	  If CheckQuestRun() Then
-		 UpdateStatus("QuestRun waiting for end. " & $loopCount)
-		 ContinueLoop
-	  EndIf
-
-	  If CheckQuestResult() Then
-		 ln("QuestComplete. ContinueGame")
-		 ;ExitLoop
-	  EndIf
-
-	  UpdateStatus("Unknown Screen")
-   WEnd
-EndFunc
-
 Func InitPosition()
    WinActivate($gameTitle)
    Local $w = WinGetPos($gameTitle)
    WinMove($gameTitle,"", $w[0], $w[1], $screenSize[0], $screenSize[1])
 EndFunc
 
-Func CheckQuestMain()
-   If CheckScreen($checkQuestMain) Then
-	  ln("Screen Find ==> QuestMain")
-	  UpdateStatus("QuestMain. click stage")
-	  LClick($clickQuestMain)
-	  Return True
-   EndIf
-   Return False
-EndFunc
+Func StartQuestLoop()
+   InitPosition()
 
-Func CheckQuestLevel()
-   If CheckScreen($checkQuestLevel) Then
-	  ln("Screen Find ==> QuestLevel")
-	  UpdateStatus("QuestLevel. click stage")
-	  LClick($checkQuestLevel)
-	  Return True
-   EndIf
-   Return False
-EndFunc
+   Local $loopCount = 0
+   While 1
+	  If $loopCount > 0 Then
+		 Sleep(2000)
+	  EndIf
 
-Func CheckQuestRun()
-   If CheckScreens($checkQuestRun) Then
-	  ln("Screen Find ==> QuestRun")
-	  LClick($clickQuestMain)
-	  UpdateStatus("QuestRun waiting for end.")
-	  Return True
-   EndIf
-   Return False
-EndFunc
+	  $loopCount += 1
+	  ln("QuestLoopCount " & $loopCount)
 
-Func CheckQuestFail()
-   If CheckScreens($checkQuestFail) Then
-	  ln("Screen Find ==> QuestFail")
-	  LClick($checkQuestFail)
-	  UpdateStatus("QuestFail")
-	  Return True
-   EndIf
-   Return False
-EndFunc
+	  If CheckAndClick("QuestMain", $checkQuestMain, $clickQuestMain) Then
+		 ContinueLoop
+	  EndIf
 
-Func CheckQuestFailCollect()
-   If CheckScreens($checkQuestFailCollect) Then
-	  ln("Screen Find ==> QuestFailCollect")
-	  LClick($checkQuestFailCollect)
-	  UpdateStatus("QuestFail - Collect")
-	  Return True
-   EndIf
-   Return False
-EndFunc
+	  If CheckAndClick("QuestFail", $checkQuestFail) Then
+		 ContinueLoop
+	  EndIf
 
-Func CheckQuestFailCollectYes()
-   If CheckScreens($checkQuestFailCollectYes) Then
-	  ln("Screen Find ==> QuestFailCollectYes")
-	  LClick($checkQuestFailCollectYes)
-	  UpdateStatus("QuestFail - CollectYes")
-	  Return True
-   EndIf
-   Return False
-EndFunc
+	  If CheckAndClick("QuestFailCollect", $checkQuestFailCollect) Then
+		 ContinueLoop
+	  EndIf
 
-Func CheckQuestResult()
-   If CheckScreens($checkQuestResult) Then
-	  ln("Screen Find ==> QuestResult")
-	  UpdateStatus("QuestResult")
-	  LClick($clickQuestResult)
-	  Return True
-   EndIf
-   Return False
+	  If CheckAndClick("QuestFailCollectYes", $checkQuestFailCollectYes) Then
+		 ContinueLoop
+	  EndIf
+
+	  If CheckAndClick("QuestResult", $checkQuestResult, $clickQuestResult) Then
+		 ContinueLoop
+	  EndIf
+
+	  If CheckAndClick("RefillBattery", $checkRefillBattery) Then
+		 ContinueLoop
+	  EndIf
+
+	  If CheckAndClick("QuestRun", $checkQuestRun, $clickQuestMain) Then
+		 UpdateStatus("QuestRun waiting for end. " & $loopCount)
+		 ContinueLoop
+	  EndIf
+
+	  UpdateStatus("Unknown Screen")
+   WEnd
 EndFunc

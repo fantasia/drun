@@ -11,6 +11,7 @@ Global $checkQuestRun[6] = [2.3, 8.98, 0xFE6E6B, 92.95, 9.36, 0xFDFFFF]
 Global $checkQuestFail[6] = [44.79, 61.06, 0xFD6E6A, 2.38, 8.34, 0x542422]
 Global $checkQuestFailCollect[6] = [28.3, 86.35, 0x45BFFD, 63.66, 85.84, 0xFD6E6A]
 Global $checkQuestFailCollectYes[6] = [31.58, 60.43, 0x7DEB4B, 66.78, 60.18, 0xFD6E6A]
+Global $checkRefillBattery[6] = [29.04, 62.2, 0x45BFFD, 65.3, 6.83, 0x191C19]
 
 Global $checkCookMain[3] = [48, 35.73, 0x6F7F71]
 Global $source1[3] = [49.75, 56.9, 0xE5BF98]

@@ -8,20 +8,6 @@
 
 HotKeySet("!w", "WindowPos")
 
-Func Test1()
-   InitPosition()
-   LDClick($source3)
-   Sleep(500)
-   LDClick($source3)
-   Sleep(500)
-   LDClick($source3)
-   Sleep(500)
-   LDClick($source4)
-   Sleep(500)
-   LDClick($source7)
-   Sleep(500)
-EndFunc
-
 ShowMainControlPannel()
 
 Local $iMsg = 0
@@ -38,7 +24,6 @@ While 1
 	  ln($controlText & "() ret=" & Call($controlText))
    EndIf
 WEnd
-
 
 Func WindowPos()
    Local $p = MouseGetPos()
@@ -76,17 +61,17 @@ Func ShowMainControlPannel()
    Local $btnPosYGap = 30
    Local $buttons[1] = ["Dummy"]
    _ArrayAdd($buttons, "InitPosition")
-   _ArrayAdd($buttons, "CookStart")
-   _ArrayAdd($buttons, "CheckCook")
-   _ArrayAdd($buttons, "Test3")
-   _ArrayAdd($buttons, "Test4")
    _ArrayDelete($buttons, 0)
 
    $frameHeight += (UBound($buttons) + 2) * $btnPosYGap
    $frameWidth += 200
 
+   If $frameHeight < 180 Then
+	  $frameHeight = 180
+   EndIf
+
    ; Create Frame
-   GUICreate("PokemonQuest Run", $frameWidth, $frameHeight)
+   GUICreate("PokemonQuest Run SM-T295N", $frameWidth, $frameHeight)
    ; Crate ExitButton
    Local $btnExitRun = GUICtrlCreateButton("Quit", $btnPosX, $btnPosY, $btnWidth)
    GUICtrlSetBkColor($btnExitRun, 0xFF6666)
